@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&display=swap');
 
-body, html {
+body, html, * {
   margin: 0;
   font-family: "Beiruti", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+body {
+  background-color: #536493;
+}
+
 
 a {
   text-decoration: none;
@@ -16,11 +21,11 @@ a {
   min-width: 100%;
   min-height: 12vh;
 
-  background-color: #8797C9;
+  background-image: linear-gradient(120deg ,#f68084  0%, #a6c0fe  100%);
 
   display: flex;
   justify-content: space-around;
-  gap: 15vh;
+  padding: 10px;
 }
 
 
@@ -44,6 +49,7 @@ button {
   width: 100px;
   border: 0.1px solid black;
   font-weight: 550;
+  background-color: #f8ebe7;
 }
 
 #login-btn {
@@ -51,4 +57,5 @@ button {
   background-color: #64739B;
   color: white;
   border: 0.1px solid white;
+  font-weight: 500;
 }
