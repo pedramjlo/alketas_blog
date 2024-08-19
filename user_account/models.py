@@ -34,3 +34,13 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+    def save(self, *args, **kwargs):
+        from user_profile.models import Profile
+
+        super().save(*args, **kwargs)
+
+        if not hasattr(self, "profile"):
+            Profile.objects.get_or_create(user=self)
+
