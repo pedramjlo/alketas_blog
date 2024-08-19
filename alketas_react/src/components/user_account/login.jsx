@@ -9,12 +9,12 @@ import '../../style/user_account/login.css';
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState('');
+    const [error, setError] = useState('');
 
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        setErrors(null);
+        setError(null);
 
         try {
             const response = await fetch('http://127.0.0.1:8000/login', {
@@ -34,13 +34,14 @@ const LoginPage = () => {
             console.log('successful login')
 
         } catch (error) {
-            setErrors(error.message)
+            setError(error.message)
         }
 
     };
     
     return (
         <div className='form-page'>  
+            <Navbar />
            <div className='form-container'>
                 <h2>ورود</h2>
                 <form onSubmit={handleLogin}>
