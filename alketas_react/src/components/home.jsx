@@ -10,10 +10,8 @@ const HomePage = () => {
         <div className='home-container'>
             <Navbar />
 
-            <div class="container">
-                <div class="left">Left</div>
-                <div class="middle">Middle</div>
-                <div class="right">Right</div>
+            <div className='home-main'>
+
             </div>
 
         </div>
