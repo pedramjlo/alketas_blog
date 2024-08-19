@@ -6,6 +6,9 @@ import '../../style/user_account/login.css';
 
 
 
+import { Modal, Button } from 'react-bootstrap';
+
+
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

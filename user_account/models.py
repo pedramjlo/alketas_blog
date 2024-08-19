@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=30, blank=False, null=False)
     email = models.EmailField(unique=True, blank=False, null=False)
     password = models.CharField(max_length=100, unique=True, blank=False, null=False)
-
+    has_selected_avatar = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         'auth.Group',

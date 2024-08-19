@@ -7,6 +7,8 @@ import FeedPage from './components/blog/feed';
 import LoginPage from './components/user_account/login';
 import SignupPage from './components/user_account/signup';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import { AuthProvider } from './components/auth/authContext';
 

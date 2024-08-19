@@ -8,7 +8,7 @@ class Avatar(models.Model):
         WOMAN = 1, "static/woman.svg"
         MAN = 1, "static/man.svg"
 
-    image = models.ImageField(upload_to='static/avatars/', default=AvatarSelect.WOMAN)
+    image = models.ImageField(upload_to='static/avatars/')
 
 
 
