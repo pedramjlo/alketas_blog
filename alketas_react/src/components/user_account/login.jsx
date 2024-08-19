@@ -70,12 +70,15 @@ const LoginPage = () => {
 
                     <button type='submit'>ورود</button>
                     
+                    {error && <p>{error}</p>}
+
+
                     <div className='no-account'>
                         <span>حساب کاربری ندارید؟ <a href="/">عضو شوید</a></span>
                         <a href="/" style={{ color: '#13274F' }}>گذرواژه را فراموش کردم</a>
                     </div>
 
-                    {error && <p>{error}</p>}
+                    
                 </form>
 
             </div>
