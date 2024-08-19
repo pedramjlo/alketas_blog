@@ -17,7 +17,7 @@ const LoginPage = () => {
         setError(null);
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/login', {
+            const response = await fetch('http://127.0.0.1:8000/api/login', {
                 method: 'Post',
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,25 +42,42 @@ const LoginPage = () => {
     return (
         <div className='form-page'>  
             <Navbar />
-           <div className='form-container'>
+           <div className='form-body'>
+            <div className='form-container'>
                 <h2>ورود</h2>
                 <form onSubmit={handleLogin}>
-                    <label>نام کاربری</label>
-                    <input 
-                        type="text"
-                        value={username}
-                        required
-                    />
-                    <label>گذرواژه</label>
-                    <input 
-                        type="text"
-                        value={password}
-                        required
-                    />  
+
+                    <div className='form-username'>
+                        <label>نام کاربری</label>
+                        <input 
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    
+                    <div className='form-password'>
+                        <label>گذرواژه</label>
+                        <input 
+                            type="text"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        /> 
+                    </div> 
+
+
                     <button type='submit'>ورود</button>
+                    
+                    <div className='no-account'>
+                        <span>حساب کاربری ندارید؟ <a href="/">عضو شوید</a></span>
+                    </div>
+
                     {error && <p>{error}</p>}
                 </form>
 
+            </div>
            </div>
         </div>
     );
