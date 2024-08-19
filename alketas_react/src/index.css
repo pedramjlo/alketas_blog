@@ -1,5 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&display=swap');
+
 body, html {
   margin: 0;
+  font-family: "Beiruti", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar, .unauth {
+  min-width: 100%;
+  min-height: 12vh;
+
+  background-color: #8797C9;
+
+  display: flex;
+  justify-content: space-around;
+  gap: 15vh;
 }
 
 
+#alketas-logo {
+  font-size: 2.4em;
+  font-weight: 700;
+}
+
+.buttons-div {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  border-radius: 15px;
+  height: 40px;
+
+}
+
+#signup-btn {
+  width: 100px;
+  border: 0.1px solid black;
+  font-weight: 550;
+}
+
+#login-btn {
+  width: 80px;
+  background-color: #64739B;
+  color: white;
+  border: 0.1px solid white;
+}

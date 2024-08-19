@@ -15,12 +15,12 @@ const Navbar = () => {
                 </nav>
             ) : (
                 <nav className='navbar unauth'> 
-                    <div id='alketas-logo'><a href="/">آلکتاس</a></div>
-
                     <div className='buttons-div'>
-                        <button>ورود</button>
-                        <button>عضویت</button>
+                        <button id='signup-btn'>عضویت</button>
+                        <button id='login-btn'>ورود</button>
                     </div>
+
+                    <div id='alketas-logo'><a href="/">آلکتاس</a></div>
 
                 </nav>
             )}
