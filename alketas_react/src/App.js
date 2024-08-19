@@ -6,6 +6,7 @@ import HomePage from './components/home';
 import FeedPage from './components/blog/feed';
 import LoginPage from './components/user_account/login';
 import SignupPage from './components/user_account/signup';
+import SelectAvatar from './components/user_profile/select-avatar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,6 +18,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/select-avatar" element={<SelectAvatar />} />
           <Route path="/register" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />

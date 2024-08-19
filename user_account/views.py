@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from .models import CustomUser
@@ -31,6 +31,8 @@ class LoginView(APIView):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                if not user.has_selected_avatar:
+                    return redirect('select-avatar')
                 return Response({'message': 'Successful login'}, status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
