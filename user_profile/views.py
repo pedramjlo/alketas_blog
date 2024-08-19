@@ -2,35 +2,29 @@ from django.shortcuts import render
 
 from .models import Avatar, Profile
 from .serializers import AvatarChoiceSerializer, GetProfileSerializer
+from .utils import check_image
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.generics import UpdateAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
+from rest_framework.views import APIView
 
 
 
 
-class SelectAvatar(UpdateAPIView):
+class SelectAvatar(APIView):
     permission_classes = [IsAuthenticated,]
-    queryset = Avatar.objects.all()
-    serializer_class = AvatarChoiceSerializer
 
-
-    def update(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            user = self.request.user
-            if not user is None:
-                user.avatar = serializer.validated_data['image']
-                user.save()
-                return Response({'message': 'Profile avatar changed successfully'}, status=status.HTTP_202_ACCEPTED)
-            else:
-                return Response({'message': 'user not found!'}, status=status.HTTP_401_UNAUTHORIZED)
-            
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        image = request.data.get('image')
+        try:
+            user = check_image(image, request)
+            return Response({'message': 'آواتار با موفقیت انتخاب شد'}, status=status.HTTP_200_OK)
         
+        except ValueError as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class GetProfiles(ListAPIView):

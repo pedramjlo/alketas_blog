@@ -88,3 +88,6 @@ class RegisterView(CreateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
             
+
+def logoutView(request):
+    logout(request)
