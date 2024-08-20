@@ -19,7 +19,7 @@ body {
   flex-direction: row-reverse;
   justify-content: space-around;
   align-content: center;
-
+  gap: 90px;
 }
 
 .alketas-logo {
@@ -27,7 +27,7 @@ body {
   font-weight: 500;
 }
 
-a {
+p, a {
   text-decoration: none;
   color: white;
 }
