@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.exceptions import ValidationError
 from .models import Post
-from .serializers import FeedSerializer, CreatePostSerializer
+from .serializers import FeedSerializer, CreatePostSerializer, GetPostSerializer
 from .utils import create_post
 
 from rest_framework import status, viewsets
@@ -9,10 +9,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import ListAPIView, CreateAPIView
 
+
+
 class FeedView(ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = FeedSerializer
+
 
 class CreatePostView(CreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -41,3 +44,10 @@ class CreatePostView(CreateAPIView):
                 return Response({'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class GetPosts(ListAPIView):
+    serializer_class = GetPostSerializer
+    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticated]
