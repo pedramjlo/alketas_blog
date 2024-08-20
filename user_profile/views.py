@@ -20,7 +20,7 @@ class SelectAvatar(APIView):
         image = request.data.get('image')
         try:
             user = check_image(image, request)
-            return Response({'message': 'آواتار با موفقیت انتخاب شد'}, status=status.HTTP_200_OK)
+            return Response({'message': 'آواتار با موفقیت انتخاب شدس'}, status=status.HTTP_200_OK)
         
         except ValueError as e:
             return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)

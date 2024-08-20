@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user_account',
     'user_profile',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,8 @@ REST_FRAMEWORK = {
 
 
 AUTH_USER_MODEL = 'user_account.CustomUser'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

@@ -29,13 +29,13 @@ class LoginView(APIView):
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
             user = authenticate(username=username, password=password)
-            if user is not None:
+            if user is not None and user.is_active:
                 login(request, user)
                 if not user.has_selected_avatar:
                     return redirect('select-avatar')
-                return Response({'message': 'Successful login'}, status=status.HTTP_202_ACCEPTED)
+                return Response({'message': 'ورود موفقیت آمیز'}, status=status.HTTP_202_ACCEPTED)
             else:
-                return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+                return Response({'message': 'مشخصات به اشتباه وارد شده'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -91,3 +91,5 @@ class RegisterView(CreateAPIView):
 
 def logoutView(request):
     logout(request)
+    return redirect('login')
+     #return JsonResponse({'message': 'با موفقیت از حسابتان خارج شدید'})

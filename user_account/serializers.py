@@ -3,7 +3,7 @@ from .models import CustomUser
 
 
 from rest_framework import serializers
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from .models import CustomUser
 
 
@@ -19,12 +19,13 @@ class LoginSerializer(serializers.Serializer):
         if username and password:
             user = authenticate(username=username, password=password)
             if user is None:
-                raise serializers.ValidationError("Invalid login credentials.")
+                raise serializers.ValidationError("این کاربر وجود ندارد یا غیرفعال است")
         else:
-            raise serializers.ValidationError("Must include both username and password.")
+            raise serializers.ValidationError("فیلدهای نام کاربری و گذرواژه نباید خالی باشند")
 
         data["user"] = user
         return data
+
 
 
 
