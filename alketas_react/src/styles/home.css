@@ -12,9 +12,10 @@
 .home-visuals {
     display: flex;
     flex-direction: column;
+    gap: 25px;
     width: 26%;
     height: 26%;
-    margin-left: 12vw;
+    margin-left: 10vw;
 }
 
 .home-visuals img {
@@ -23,11 +24,12 @@
 
 .home-description {
     width: 30%;
-    line-height: 2;
+    line-height: 1.9;
     font-size: 1.6em;
     direction: rtl;
-    margin-top: 12vw;
-    margin-right: 29vh;
+    position: relative;
+    top: 7vh;
+    right: 11vw;
 }
 
 #visitor-button {
