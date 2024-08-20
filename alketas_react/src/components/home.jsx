@@ -1,22 +1,17 @@
 import React from 'react';
+import Navbar from './navbar';
 
-import Navbar from './navbar.jsx';
-
-import '../style/home.css';
 
 
 const HomePage = () => {
-    return(
+    return (
         <div className='home-container'>
             <Navbar />
-
-            <div className='home-main'>
+            <div className='home-content'>
 
             </div>
-
         </div>
     );
 };
-
 
 export default HomePage;
