@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'user_account',
     'user_profile',
     'blog',
+    'voting',
+    
 ]
 
 MIDDLEWARE = [

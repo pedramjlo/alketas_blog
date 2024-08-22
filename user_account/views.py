@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from .models import CustomUser
-from .serializers import LoginSerializer, GetUsers, RegisterSerializer
+from .serializers import LoginSerializer, GetUsers, RegisterSerializer, GetAuthSerializer
 from .utils import create_user
 
 from django.views.decorators.csrf import csrf_exempt
@@ -40,6 +40,12 @@ class LoginView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
+
+"""
+Getting a list of all CustomUser model objects (user accounts)
+
+"""
 
 
 class GetUsers(APIView):
@@ -87,9 +93,33 @@ class RegisterView(CreateAPIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+"""
+
+we always need a separate view for logout 
+
+"""
             
 
 def logoutView(request):
     logout(request)
     return redirect('login')
      #return JsonResponse({'message': 'با موفقیت از حسابتان خارج شدید'})
+
+
+"""
+
+ GetAuth() check whether the user is authenticated or not
+
+"""
+
+class GetAuth(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = GetAuthSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated:
+            return Response({"message": "You are currently logged in."}, status=status.HTTP_202_ACCEPTED)
+        return Response({'message': 'You are not logged in!'}, status=status.HTTP_401_UNAUTHORIZED)

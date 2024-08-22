@@ -51,3 +51,4 @@ class GetPosts(ListAPIView):
     serializer_class = GetPostSerializer
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticated]
+

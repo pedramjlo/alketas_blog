@@ -37,7 +37,17 @@ class GetUsers(serializers.Serializer):
 
 
 
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
+
+
+
+
+class GetAuthSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username')
