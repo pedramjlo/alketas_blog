@@ -58,6 +58,7 @@ class GetUsers(APIView):
     
 
 
+
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
@@ -83,9 +84,9 @@ class RegisterView(CreateAPIView):
 
                 if user:
                     login(request, user)
-                    return Response({'message': 'Created account. You are being logged in now'}, status=status.HTTP_201_CREATED)
+                    return Response({'message': 'حساب شما ساخته شد. در حال ورود...'}, status=status.HTTP_201_CREATED)
                 else:
-                    return ({'message': 'An error occured'})
+                    return ({'message': 'خظایی رخ داده است'})
                 
             except Exception as e:
                 return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -97,7 +98,7 @@ class RegisterView(CreateAPIView):
 
 """
 
-we always need a separate view for logout 
+a separate view for logout 
 
 """
             
@@ -116,7 +117,6 @@ def logoutView(request):
 
 class GetAuth(APIView):
     permission_classes = [AllowAny]
-    serializer_class = GetAuthSerializer
 
     def get(self, request, *args, **kwargs):
         user = request.user

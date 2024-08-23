@@ -26,7 +26,7 @@ class GetPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('author', 'title', 'body', 'created_at', 'upvotes', 'downvotes', 'user_vote',)
+        fields = ('id', 'author', 'title', 'body', 'created_at', 'upvotes', 'downvotes', 'user_vote',)
 
 
     def get_user_vote(self, obj):
