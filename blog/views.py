@@ -4,6 +4,7 @@ from .models import Post
 from .serializers import FeedSerializer, CreatePostSerializer, GetPostSerializer, PostSerializer
 from .utils import create_post
 
+
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -40,6 +41,7 @@ class CreatePostView(CreateAPIView):
                 )
 
                 return Response({'message': 'پست با موفقیت ساخته شد'}, status=status.HTTP_201_CREATED)
+
             except ValidationError as e:
                 return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
             except PermissionError as e:
