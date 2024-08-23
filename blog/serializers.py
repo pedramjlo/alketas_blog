@@ -19,20 +19,16 @@ class CreatePostSerializer(serializers.ModelSerializer):
 
 
 class GetPostSerializer(serializers.ModelSerializer):
-
-    upvotes = serializers.IntegerField(read_only=True)
-    downvotes = serializers.IntegerField(read_only=True)
-    user_vote = serializers.SerializerMethodField()
+    author_username = serializers.CharField(source='author.username', read_only=True)
+    upvotes = serializers.SerializerMethodField(read_only=True)
+    downvotes = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Post
-        fields = ('id', 'author', 'title', 'body', 'created_at', 'upvotes', 'downvotes', 'user_vote',)
+        fields = ('id', 'author_username', 'title', 'body', 'created_at', 'upvotes', 'downvotes',)
 
+    def get_upvotes(self, obj):
+        return obj.votes.filter(vote=1).count()
 
-    def get_user_vote(self, obj):
-        user = self.context['request'].user
-        if user.is_authenticated:
-            vote = obj.vote_set.filter(user=user).first()
-            if vote:
-                return vote.vote
-        return 0
+    def get_downvotes(self, obj):
+        return obj.votes.filter(vote=-1).count()

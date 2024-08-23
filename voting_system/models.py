@@ -13,14 +13,14 @@ class Vote(models.Model):
         )
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, related_name='votes', on_delete=models.PROTECT)
     vote = models.IntegerField(choices=VotingChoice, default=0)
 
     def display_upvotes(self):
-        return Vote.objects.filter(vote=Vote.VotingChoice.UPVOTE).count()
+        return Vote.objects.filter(vote=1).count()
 
     def display_downvotes(self):    
-        return Vote.objects.filter(vote=Vote.VotingChoice.DOWNVOTE).count()
+        return Vote.objects.filter(vote=-1).count()
 
     def get_vote(self, user, value):
         vote, created = Vote.objects.update_or_create(user=user, defaults={'vote': value})
@@ -28,3 +28,7 @@ class Vote(models.Model):
             vote.vote = value
             vote.save()
         return vote
+    
+
+    def __str__(self):
+        return f"{self.user} {(self.get_vote_display()).lower()}d '{self.post.title}'"
