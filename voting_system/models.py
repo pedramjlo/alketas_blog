@@ -22,6 +22,9 @@ class Vote(models.Model):
 
     def display_downvotes(self):    
         return Vote.objects.filter(post=self.post, vote=-1).count()
+    
+    def karma_count(self):
+        return self.display_upvotes() - self.display_downvotes() 
 
     def vote_up(self):
         self.vote = 1
