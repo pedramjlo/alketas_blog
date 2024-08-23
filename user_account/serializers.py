@@ -30,10 +30,12 @@ class LoginSerializer(serializers.Serializer):
 
 
 
-class GetUsers(serializers.Serializer):
+class GetUserSerializer(serializers.ModelSerializer):
+    user_role = serializers.CharField(source='profile.role', read_only=True)
+
     class Meta:
         model = CustomUser
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'user_role',)
 
 
 

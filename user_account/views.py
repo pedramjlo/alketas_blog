@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from .models import CustomUser
-from .serializers import LoginSerializer, GetUsers, RegisterSerializer, GetAuthSerializer
+from .serializers import LoginSerializer, GetUserSerializer, RegisterSerializer
 from .utils import create_user
 
 from django.views.decorators.csrf import csrf_exempt
@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
@@ -48,13 +48,14 @@ Getting a list of all CustomUser model objects (user accounts)
 """
 
 
-class GetUsers(APIView):
-    permission_classes = [IsAuthenticated,]
+class GetUsers(ListAPIView):
+    permission_classes = [AllowAny]
+    queryset = CustomUser.objects.all()
+    serializer_class = GetUserSerializer
 
-    def get(self, request, *args, **kwargs):
-        users = CustomUser.objects.all()
-        user_data = [{'id: ': user.id, 'username: ': user.username} for user in users]
-        return Response(user_data, status=status.HTTP_200_OK)
+
+
+
     
 
 
