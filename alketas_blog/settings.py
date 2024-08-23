@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'user_account',
     'user_profile',
     'blog',
+    'voting_system',
     
 ]
 
