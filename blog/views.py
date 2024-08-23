@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.core.exceptions import ValidationError
 from .models import Post
-from .serializers import FeedSerializer, CreatePostSerializer, GetPostSerializer
+from .serializers import FeedSerializer, CreatePostSerializer, GetPostSerializer, PostSerializer
 from .utils import create_post
 
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from rest_framework.views import APIView
 
 
 
@@ -37,6 +38,7 @@ class CreatePostView(CreateAPIView):
                     body=body,
                     created_at=created_at
                 )
+
                 return Response({'message': 'پست با موفقیت ساخته شد'}, status=status.HTTP_201_CREATED)
             except ValidationError as e:
                 return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -51,3 +53,12 @@ class GetPosts(ListAPIView):
     serializer_class = GetPostSerializer
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticated]
+
+
+
+
+class PostView(RetrieveAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated,]
+    queryset = Post.objects.all()
+

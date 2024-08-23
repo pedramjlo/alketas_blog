@@ -43,7 +43,13 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
 
+    
 
+
+    def change_email(self, new_email):
+        self.email = new_email
+        self.save(using=self._db)
+        return self
 
 
     def change_password(self, new_password):

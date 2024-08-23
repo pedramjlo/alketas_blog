@@ -13,7 +13,7 @@ class Vote(models.Model):
         )
 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, related_name='votes', on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, related_name='votes', on_delete=models.CASCADE)
     vote = models.IntegerField(choices=VotingChoice, default=0)
 
     def display_upvotes(self):

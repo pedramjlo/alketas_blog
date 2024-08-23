@@ -5,8 +5,8 @@ from user_account.models import CustomUser
 
 class Avatar(models.Model):
     class AvatarSelect(models.TextChoices):
-        WOMAN = 1, "static/avatars/lady-avatar.svg"
-        MAN = 1, "static/avatars/man-avatar.svg"
+        WOMAN = "static/avatars/lady-avatar.svg", "Woman"
+        MAN = "static/avatars/man-avatar.svg", "Man"
 
     image = models.ImageField(upload_to='static/avatars/', default=AvatarSelect.WOMAN)
 
