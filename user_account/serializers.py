@@ -18,8 +18,8 @@ class LoginSerializer(serializers.Serializer):
 
         if username and password:
             user = authenticate(username=username, password=password)
-            if user is None:
-                raise serializers.ValidationError("این کاربر وجود ندارد یا غیرفعال است")
+            if user and not user.is_active:
+                raise serializers.ValidationError("این کاربر غیرفعال است")
         else:
             raise serializers.ValidationError("فیلدهای نام کاربری و گذرواژه نباید خالی باشند")
 

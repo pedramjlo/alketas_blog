@@ -17,3 +17,5 @@ class GetProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('user', 'role',)
+
+

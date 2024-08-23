@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 
 from .models import CustomUser
 from .serializers import LoginSerializer, GetUserSerializer, RegisterSerializer
-from .utils import create_user
+
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -29,10 +29,8 @@ class LoginView(APIView):
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
             user = authenticate(username=username, password=password)
-            if user is not None and user.is_active:
+            if not user is None:
                 login(request, user)
-                if not user.has_selected_avatar:
-                    return redirect('select-avatar')
                 return Response({'message': 'ورود موفقیت آمیز'}, status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({'message': 'مشخصات به اشتباه وارد شده'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -75,13 +73,15 @@ class RegisterView(CreateAPIView):
             password = serializer.validated_data['username']
 
             try:
-                user = create_user(
+                user = CustomUser.objects.create_user(
                     username=username, 
-                    first_name=first_name, 
+                    first_name=first_name,
                     last_name=last_name,
-                    email=email, 
-                    password=password
+                    email=email,
                 )
+
+                user.set_password = password
+                user.save()
 
                 if user:
                     login(request, user)
