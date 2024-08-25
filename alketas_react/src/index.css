@@ -47,6 +47,7 @@ button {
 .buttons-div {
   display: flex;
   flex-direction: row-reverse;
+  gap: 20px;
 }
 
 #login-btn {

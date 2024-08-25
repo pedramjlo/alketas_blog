@@ -14,7 +14,7 @@ const LoginPage = () => {
         event.preventDefault(); // Prevent the default form submission
 
         try {
-            const response = await fetch('http://localhost:8000/api/login', {
+            const response = await fetch('http://localhost:8000/api/login/', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -39,8 +39,9 @@ const LoginPage = () => {
             <Navbar />
                 <div className='form-container'>
                     <div className='form'>
-                    <h2>ورود</h2>
+
                     <form onSubmit={handleLogin}>
+                        <h2>ورود</h2>
                         <div className='form-username'>
                             <label>نام کاربری</label>
                             <input
@@ -51,7 +52,7 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className='form-password'>
-                            <label>رمز عبور</label>
+                            <label>گذرواژه</label>
                             <input
                                 type="password"
                                 value={password}
