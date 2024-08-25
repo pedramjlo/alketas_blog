@@ -12,11 +12,11 @@
     direction: rtl;
     line-height: 2;
 
-    transform: translateY(50px);
+    transform: translateY(70px);
 
     display: flex;
     flex-direction: column;
-    gap: 70px;
+    gap: 50px;
 }
 
 
