@@ -1,0 +1,42 @@
+.home-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.descriptions {
+    width: 450px;
+    height: auto;
+
+    direction: rtl;
+    line-height: 2;
+
+    transform: translateY(50px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+
+.visuals {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#visitor-btn {
+    width: 300px;
+    background-color: #dc4a5b;
+    color: white;
+    border: 0.1px solid #fff7d6;
+}
+
+
+#visitor-btn:hover {
+    transform: scale(0.9);
+    transition: transform 0.5s ease-out;
+}

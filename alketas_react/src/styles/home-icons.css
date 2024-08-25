@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px;
+    border-top: 0.1px solid white;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    padding-top: 8px;
+}
+
+.label {
+    color: white;
+}
+
+.icons img {
+    width: 32px;
+}
+
+.icons img:hover {
+    transform: translateY(-5px);
+    transition: transform 0.5s ease-in-out;
+}
