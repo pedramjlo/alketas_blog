@@ -19,6 +19,10 @@
     gap: 50px;
 }
 
+.descriptions p {
+    height: 120px;
+}
+
 
 .visuals {
     max-width: 450px;
