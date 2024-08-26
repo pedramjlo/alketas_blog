@@ -3,7 +3,7 @@ import Navbar from './navbar';
 import '../styles/home.css';
 import HomeIcons from './home-icons';
 
-import Idea from '../images/idea.svg';
+import Idea from '../images/Idea.svg';
 
 
 

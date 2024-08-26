@@ -3,6 +3,9 @@ import Navbar from '../navbar';
 import '../../styles/user_account/signup.css';
 import { useNavigate } from 'react-router-dom';
 
+import Cookies from 'js-cookie'; 
+
+
 const SignupPage = () => {
     const [username, setUsername] = useState('');
     const [first_name, setFirst_name] = useState('');

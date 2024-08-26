@@ -1,0 +1,25 @@
+.feed-container {
+    display: flex;
+
+}
+
+
+.right-column, .mid-column, .left-column {
+    height: 100vh;
+}
+
+.left-column {
+    width: 20%;
+    flex: 1;
+}
+
+.mid-column{ 
+    flex: 3;
+    border-left: 0.1px solid white;
+    border-right: 0.1px solid white;
+}
+
+.right-column {
+    width: 20%;
+    flex: 1;
+}
