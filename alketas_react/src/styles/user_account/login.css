@@ -24,11 +24,14 @@ form {
     gap: 10px;
 
     width: 35vw;
-    height:400px;
+    height:420px;
     color: white;
-    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    background-color: #E97451;
 }
 
+form a {
+    transform: translateY(15px);
+}
 
 
 .form-username, .form-password {

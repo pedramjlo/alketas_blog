@@ -60,9 +60,11 @@ const LoginPage = () => {
                                 required
                             />
                         </div>
-                        <button type="submit">Login</button>
+                        <button type="submit">ورود</button>
+                        <a href="/register">حساب کاربری ندارید؟</a>
                         {error && <p>{error}</p>}
                     </form>
+                    
                     </div>
                 </div>
         </div>

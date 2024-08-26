@@ -16,7 +16,7 @@ const Navbar = () => {
         ) : (
           <nav className='navbar'>
             <div className='buttons-div'>
-              <a href='/' id='login-btn'>ورود</a>
+              <a href='/login' id='login-btn'>ورود</a>
               <a href='/' id='signup-btn'>عضویت</a>
             </div>
             <div className='alketas-logo'><a href="/">آلکتاس</a></div>
