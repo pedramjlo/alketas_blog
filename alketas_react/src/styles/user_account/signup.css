@@ -1,0 +1,33 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    height: 550px;
+}
+
+form h2 {
+    transform: translateY(1px);
+}
+
+form button {
+    transform: translateY(-12px);
+}
+
+#have-account {
+    transform: translateY(-8px);
+}
+
+.form-username, .form-firstname, .form-lastname, .form-email, .form-passowrd {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
