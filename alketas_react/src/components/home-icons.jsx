@@ -1,6 +1,11 @@
 import React from "react";
 import '../styles/home-icons.css';
 
+import Django from '../icons/django.svg';
+import Python from '../icons/python.svg';
+import Bootstrap from '../icons/bootstrap.svg';
+import Reacti from '../icons/react.svg';
+
 
 
 const HomeIcons = () => {
@@ -8,10 +13,10 @@ const HomeIcons = () => {
         <div className="container">
             <div className="label">Technologies used in this project</div>
             <div className="icons">
-                <img src="/icons/django.svg" alt="Django" />
-                <img src="/icons/python.svg" alt="Python" />
-                <img src="/icons/react.svg" alt="React" />
-                <img src="/icons/bootstrap.svg" alt="Bootstrap" />
+                <img src={Django} alt="Django" />
+                <img src={Python} alt="Python" />
+                <img src={Bootstrap} alt="React" />
+                <img src={Reacti} alt="Bootstrap" />
             </div>
         </div>
     );

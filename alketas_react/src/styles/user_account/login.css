@@ -1,5 +1,3 @@
-
-
 .form-container {
     min-width: 100%;
     height: 100%;
@@ -24,7 +22,7 @@ form {
     gap: 10px;
 
     width: 35vw;
-    height:420px;
+    height:380px;
     color: white;
     background-color: #E97451;
 }

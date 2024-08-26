@@ -3,6 +3,8 @@ import Navbar from './navbar';
 import '../styles/home.css';
 import HomeIcons from './home-icons';
 
+import Idea from '../images/idea.svg';
+
 
 
 const HomePage = () => {
@@ -12,7 +14,7 @@ const HomePage = () => {
             <main className='home-main'>
 
                 <div className='visuals'>
-                    <img src="/images/idea.svg" alt="idea illustration" />
+                    <img src={Idea} alt="idea illustration" />
                     <button id='visitor-btn'>ورود به عنوان ویزیتور</button>
                 </div>
                 
