@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
-
 import Navbar from '../navbar';
 import '../../styles/user_account/signup.css';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const SignupPage = () => {
-    const { username, setUsername } = useState('');
-    const { first_name, setFirst_name } = useState('');
-    const { last_name, setLast_name } = useState('');
-    const { email, setEmail } = useState('');
-    const { password, setPassword } = useState('');
-    const { error, setError } = useState('');
+    const [username, setUsername] = useState('');
+    const [first_name, setFirst_name] = useState('');
+    const [last_name, setLast_name] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
-
 
     const handleRegister = async (event) => {
         event.preventDefault();
+        const csrfToken = Cookies.get('csrftoken');
         try {
             const response = await fetch('http://127.0.0.1:8000/api/register/', {
                 method: "POST",
                 headers: {
-                    "Content-Type": 'application/json'
+                    "Content-Type": 'application/json',
+                    'X-CSRFToken': csrfToken,
                 },
                 body: JSON.stringify({ username, first_name, last_name, email, password })
             });
@@ -31,16 +29,12 @@ const SignupPage = () => {
 
             if (data.success) {
                 navigate('/feed');
-            }
-            else {
+            } else {
                 setError('Invalid credentials');
             }
+        } catch (error) {
+            setError('An error occurred while creating the account!');
         }
-
-        catch (error) {
-            setError('Ac error while creating the account occured!');
-        }
-
     };
 
     return (
@@ -91,7 +85,7 @@ const SignupPage = () => {
                             />
                         </div>
 
-                        <div className='form-username'>
+                        <div className='form-password'>
                             <label>گذرواژه </label>
                             <input 
                                 type="password" 
@@ -103,13 +97,11 @@ const SignupPage = () => {
                         <button type='submit'>عضویت</button>
                         {error && <p>{error}</p>}
                         <a id='have-account' href="/login">حساب کاربری دارید؟</a>
-
                     </form>
                 </div>
             </div>
         </div>
     );
 };
-
 
 export default SignupPage;

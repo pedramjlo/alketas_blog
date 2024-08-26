@@ -12,12 +12,14 @@ const LoginPage = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault(); // Prevent the default form submission
+        const csrfToken = Cookies.get('csrftoken');
 
         try {
             const response = await fetch('http://localhost:8000/api/login/', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'X-CSRFToken': csrfToken,
                 },
                 body: JSON.stringify({ username, password })
             });
