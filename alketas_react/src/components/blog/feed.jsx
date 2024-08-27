@@ -6,7 +6,6 @@ import Navbar from '../navbar';
 const FeedPage = () => {
     return(
         <div className='feed'>
-            <Navbar />
             <main className='feed-container'>
                 
                 <div className='left-column'>
@@ -18,7 +17,7 @@ const FeedPage = () => {
                 </div>
 
                 <div className='right-column'>
-
+                    <Navbar />
                 </div>
             </main>
         </div>

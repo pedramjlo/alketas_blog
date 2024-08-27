@@ -11,14 +11,16 @@ const Navbar = () => {
       <div>
 
         {isAuthenticated ? (
-          <nav className='navbar'>
+          <nav className='navbar auth'>
+            <div className='logo-auth'><a href="/">آلکتاس</a></div>
           </nav>
         ) : (
-          <nav className='navbar'>
-            <div className='buttons-div'>
+          <nav className='navbar unauth'>
+            {/* <div className='buttons-div'>
               <a href='/login' id='login-btn'>ورود</a>
               <a href='/register' id='signup-btn'>عضویت</a>
             </div>
+            */}
             <div className='alketas-logo'><a href="/">آلکتاس</a></div>
         </nav>
         )}
