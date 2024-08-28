@@ -53,3 +53,11 @@ class GetAuthSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('username')
+
+
+
+
+class DeleteAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'password',)

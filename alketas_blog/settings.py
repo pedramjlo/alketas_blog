@@ -130,7 +130,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'alketas_react/build/static/')
+    os.path.join(BASE_DIR / 'static')
 ]
 
 # Media files
@@ -157,9 +157,12 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'user_account.CustomUser'
 
 
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'alketas_blog.user_account.backends.CustomUserBackend',
 ]
+
 
 
 CORS_ALLOWED_ORIGINS = [

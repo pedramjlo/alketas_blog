@@ -3,15 +3,15 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from .models import CustomUser
-from .serializers import LoginSerializer, GetUserSerializer, RegisterSerializer
-
+from .serializers import LoginSerializer, GetUserSerializer, RegisterSerializer, DeleteAccountSerializer
+from. utils import create_user
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, DestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
@@ -28,16 +28,16 @@ class LoginView(APIView):
         if serializer.is_valid():
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
+            print(f"Attempting to authenticate user: {username}")
             user = authenticate(username=username, password=password)
-            if not user is None:
+            if user is not None:
+                print(f"Authenticated user: {user.username}")
                 login(request, user)
                 return Response({'message': 'ورود موفقیت آمیز'}, status=status.HTTP_202_ACCEPTED)
             else:
+                print("Authentication failed")
                 return Response({'message': 'مشخصات به اشتباه وارد شده'}, status=status.HTTP_401_UNAUTHORIZED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+       
 
 
 """
@@ -73,15 +73,12 @@ class RegisterView(CreateAPIView):
             password = serializer.validated_data['username']
 
             try:
-                user = CustomUser.objects.create_user(
+                user = create_user(
                     username=username, 
                     first_name=first_name,
                     last_name=last_name,
                     email=email,
                 )
-
-                user.set_password = password
-                user.save()
 
                 if user:
                     login(request, user)
@@ -124,3 +121,14 @@ class GetAuth(APIView):
         if user.is_authenticated:
             return Response({"message": "You are currently logged in."}, status=status.HTTP_202_ACCEPTED)
         return Response({'message': 'You are not logged in!'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+
+
+class DeleteAccountView(DestroyAPIView):
+    serializer_class = DeleteAccountSerializer
+    permission_classes = [IsAuthenticated]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)

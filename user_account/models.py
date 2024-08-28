@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractUser, Group, Permission
-
-
-
+from django.contrib.auth.models import BaseUserManager, AbstractUser
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, email, password=None, **extra_fields):
@@ -17,56 +14,34 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, username, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(username, email, password, **extra_fields)
 
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='customuser_set',  
-        blank=True,
-        help_text='The groups this user belongs to.',
-        verbose_name='groups',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='customuser_set',  
-        blank=True,
-        help_text='Specific permissions for this user.',
-        verbose_name='user permissions',
-    )
-
-    
-
-
-
 class CustomUser(AbstractUser):
     objects = CustomUserManager()
-
-
-    
-
 
     def change_email(self, new_email):
         self.email = new_email
         self.save(using=self._db)
         return self
 
-
     def change_password(self, new_password):
-        # save_password() method should be called not assgined!
         self.set_password(new_password)
         self.save(using=self._db)
+        return self
+
+    def delete_account(self):
+        self.delete()
         return self
 
     def __str__(self):
         return self.username
 
-
     def save(self, *args, **kwargs):
-        from user_profile.models import Profile
-
         super().save(*args, **kwargs)
-
-        if not hasattr(self, "profile"):
-            Profile.objects.get_or_create(user=self)
-
+        from user_profile.models import Profile
+        Profile.objects.get_or_create(user=self)
